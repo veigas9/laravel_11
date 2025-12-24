@@ -10,10 +10,11 @@ class UserController extends Controller
 {
     public function index()
     {
-        $user = User::first();
+        // $users = User::all();
+        $users = User::paginate(10);
 
-        // dd($user);
+        // dd($users);
 
-        return view('admin.user.index', compact('user'));
+        return view('admin.user.index', compact('users'));
     }
 }
