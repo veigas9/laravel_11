@@ -1,11 +1,7 @@
+@extends('admin.layouts.app')
 
-<html>
-    <head>
-        <meta charset="utf-8"/>
-        <title>Laravel 11</title>
-    </head>
-    <body>
-        <h1> Novo Usuário </h1>
+@section('content')
+    <h1> Novo Usuário </h1>
 
         <form action="{{ route('user.store') }}" method="POST">
             @csrf
@@ -18,7 +14,6 @@
             <label for="password">Senha:</label><br/>
             <input type="password" id="password" name="password"/><br/><br/>
 
-            <button type="submit">Criar Usuário</button>
-        </form>
-    </body>
-</html>
+            <button type="submit">Criar Usuário</button>        </form>
+
+@endsection

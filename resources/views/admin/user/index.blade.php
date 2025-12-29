@@ -1,11 +1,7 @@
+@extends('admin.layouts.app')
 
-<html>
-    <head>
-        <meta charset="utf-8"/>
-        <title>Laravel 11</title>
-    </head>
-    <body>
-        <h1> Lista de Usuários </h1>
+@section('content')
+    <h1> Lista de Usuários </h1>
 
         <a href="{{ route('user.create') }}">Adicionar Novo Usuário</a>
 
@@ -31,7 +27,8 @@
                 @endforelse
             </tbody>
         </table>
-
     {{ $users->links() }}
-    </body>
-</html>
+    
+@endsection
+
+
