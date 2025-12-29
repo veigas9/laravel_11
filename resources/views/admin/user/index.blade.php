@@ -1,22 +1,14 @@
-{{-- <!DOCTYPE html>
-<html lang="pt-br">
-<head>
-<meta charset="utf-8"/>
-<title>HTML5 – Estrutura básica</title>
-</head>
-<body>
-    <h1> {{$user->name}} </h1>
-</body>
-</html> --}}
-
 
 <html>
     <head>
         <meta charset="utf-8"/>
-        <title>HTML5 – Estrutura básica</title>
+        <title>Laravel 11</title>
     </head>
     <body>
         <h1> Lista de Usuários </h1>
+
+        <a href="{{ route('user.create') }}">Adicionar Novo Usuário</a>
+
         <table border="1">
             <thead>
                 <tr>
