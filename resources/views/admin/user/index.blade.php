@@ -3,6 +3,12 @@
 @section('content')
     <h1> Lista de Usuários </h1>
 
+    @if (session()->has('success'))
+        <div style="color: green;">
+            {{ session('success') }}
+        </div>        
+    @endif
+
         <a href="{{ route('user.create') }}">Adicionar Novo Usuário</a>
 
         <table border="1">

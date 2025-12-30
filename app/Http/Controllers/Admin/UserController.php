@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreUserRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -38,28 +39,13 @@ class UserController extends Controller
      *
      * @return void
      */
-    public function store(Request $request)
-    {
-        // dd("chegou aqui");
-
-        // Validação dos dados
-        // $validatedData = $request->validate([
-        //     'name' => 'required|string|max:255',
-        //     'email' => 'required|string|email|max:255|unique:users',
-        //     'password' => 'required|string|min:8|confirmed',
-        // ]);
-
-        // Criação do usuário
-        // User::create([
-        //     'name' => $validatedData['name'],
-        //     'email' => $validatedData['email'],
-        //     'password' => bcrypt($validatedData['password']),
-        // ]);
+    public function store(StoreUserRequest $request)
+    {        
 
        User::create($request->all());
 
         // Redireciona para a lista de usuários com uma mensagem de sucesso
-        //return redirect()->route('user.index')->with('success', 'Usuário criado com sucesso!');
-        return redirect()->route('user.index');
+        return redirect()->route('user.index')->with('success', 'Usuário criado com sucesso!');
+        // return redirect()->route('user.index');
     }   
 }
