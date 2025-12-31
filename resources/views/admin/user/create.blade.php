@@ -3,15 +3,7 @@
 @section('content')
     <h1> Novo Usuário </h1>
 
-    @if ($errors->any())
-        <div style="color: red;">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>        
-    @endif
+        <x-alerts />
 
         <form action="{{ route('user.store') }}" method="POST">
             @csrf
