@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -88,4 +89,39 @@ class UserController extends Controller
 
         return redirect()->route('user.index')->with('success', 'Usuário atualizado com sucesso!');
     }
+
+    /**
+     * Exibe os detalhes de um Usuário
+     *
+     * @return void
+     */
+    public function show(string $id)
+    {
+        if (!$user = User::find($id)) {
+            return redirect()->route('user.index')->with('error', 'Usuário não encontrado!');
+        }        
+        
+        return view('admin.user.show', compact('user'));
+    }
+
+    /**
+     * Deleta um Usuário
+     *
+     * @return void
+     */
+    public function destroy(string $id)
+    {
+        if (!$user = User::find($id)) {
+            return redirect()->route('user.index')->with('error', 'Usuário não encontrado!');
+        }
+        
+        if(Auth::user()->id === $user->id) {
+            return redirect()->route('user.index')->with('error', 'Você não pode deletar seu próprio usuário!');
+        }   
+
+        $user->delete();
+
+        return redirect()->route('user.index')->with('success', 'Usuário deletado com sucesso!');
+    }   
+
 }
