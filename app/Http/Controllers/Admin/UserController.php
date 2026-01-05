@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreUserRequest;
+use App\Http\Requests\UpdateUserRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -42,7 +43,7 @@ class UserController extends Controller
     public function store(StoreUserRequest $request)
     {        
 
-       User::create($request->all());
+       User::create($request->validated());
 
         // Redireciona para a lista de usuários com uma mensagem de sucesso
         return redirect()->route('user.index')->with('success', 'Usuário criado com sucesso!');
@@ -65,17 +66,25 @@ class UserController extends Controller
         return view('admin.user.edit', compact('user'));
     }
 
-    // public function update(StoreUserRequest $request, string $id)
-    public function update(Request $request, string $id)
+    /**
+     * Atualiza um Usuário
+     *
+     * @return void
+     */
+    public function update(UpdateUserRequest $request, string $id)
     {
         if (!$user = User::find($id)) {
             return redirect()->route('user.index')->with('error', 'Usuário não encontrado!');
         }        
 
-        $user->update($request->only([
-            'name',
-            'email'        
-        ]));
+        $data = $request->only('name', 'email');
+        // dd($data);
+
+        if($request->filled('password')) {
+            $data['password'] = bcrypt($request->input('password'));
+        }      
+
+        $user->update($data);
 
         return redirect()->route('user.index')->with('success', 'Usuário atualizado com sucesso!');
     }
