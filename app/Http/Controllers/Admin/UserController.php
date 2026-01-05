@@ -47,5 +47,36 @@ class UserController extends Controller
         // Redireciona para a lista de usuários com uma mensagem de sucesso
         return redirect()->route('user.index')->with('success', 'Usuário criado com sucesso!');
         // return redirect()->route('user.index');
-    }   
+    } 
+    
+    /**
+     * Edita um Usuário
+     *
+     * @return void
+     */
+    public function edit(string $id)
+    {
+        // $user = User::findOrFail($id);
+
+        if (!$user = User::find($id)) {
+            return redirect()->route('user.index')->with('error', 'Usuário não encontrado!');
+        }        
+        
+        return view('admin.user.edit', compact('user'));
+    }
+
+    // public function update(StoreUserRequest $request, string $id)
+    public function update(Request $request, string $id)
+    {
+        if (!$user = User::find($id)) {
+            return redirect()->route('user.index')->with('error', 'Usuário não encontrado!');
+        }        
+
+        $user->update($request->only([
+            'name',
+            'email'        
+        ]));
+
+        return redirect()->route('user.index')->with('success', 'Usuário atualizado com sucesso!');
+    }
 }

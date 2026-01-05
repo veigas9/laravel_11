@@ -13,6 +13,7 @@
                     <th>ID</th>
                     <th>Nome</th>
                     <th>Email</th>
+                    <th>Ações</th>
                 </tr>
             </thead>
             <tbody>
@@ -21,6 +22,9 @@
                         <td>{{ $user->id }}</td>
                         <td>{{ $user->name }}</td>
                         <td>{{ $user->email }}</td>
+                        <td>
+                            <a href="{{ route('user.edit', $user->id) }}">Editar</a>
+                        </td>
                     </tr>
                 @empty                    
                     <tr>
