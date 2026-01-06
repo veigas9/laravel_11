@@ -2,7 +2,7 @@
 
 return [
     // Configurações personalizadas da aplicação
-    'adimins' => [
-        'RRRa.luis.veigas@gmail.com'
+    'admins' => [
+        'a.luis.veigas@gmail.com'
     ]
 ];

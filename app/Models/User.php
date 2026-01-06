@@ -49,6 +49,6 @@ class User extends Authenticatable
 
     public function isAdmin(): bool
     {
-        return in_array($this->email, config('custom.adimins'));
+        return in_array($this->email, config('custom.admins'));
     }   
 }

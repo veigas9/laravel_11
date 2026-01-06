@@ -10,10 +10,11 @@
         <li><strong>Email:</strong> {{ $user->email }}</li>
        </ul>
 
-       <form action="{{ route('user.destroy', $user->id) }}" method="post">
-            @csrf
-            @method('delete')
-            <button type="submit">Excluir Usuário</button>
-        </form>         
-
+       @can('is-admin')
+            <form action="{{ route('user.destroy', $user->id) }}" method="post">
+                @csrf
+                @method('delete')
+                <button type="submit">Excluir Usuário</button>
+            </form> 
+       @endcan
 @endsection
