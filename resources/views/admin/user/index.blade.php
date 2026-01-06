@@ -4,7 +4,7 @@
     <div class="max-w-7xl mx-auto py-8">
         <h1 class="text-2xl font-semibold text-gray-800 dark:text-gray-200 mb-6">Lista de Usuários</h1>
 
-        <x-alerts />
+        <x-alerts class="mb-4" />
 
         <a href="{{ route('user.create') }}" class="inline-block mb-4 px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700">Adicionar Novo Usuário</a>
 
