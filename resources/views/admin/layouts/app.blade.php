@@ -7,10 +7,12 @@
        <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
-    <body>
-        <header></header>
-        @yield('content')
-        <footer> </footer>
+    <body class="bg-gray-100 text-gray-800">        
+        @include('layouts.navigation')
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+             @yield('content')
+        </div>       
+        {{-- <footer> </footer> --}}
 
     </body>
 </html>
